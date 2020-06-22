@@ -1,12 +1,12 @@
 {
-  "name": "Vaadin Element",
+  "name": "Vaadin Avatar",
   "pages": [
   {
     "name": "Basics",
-    "url": "element-basic-demos",
-    "src": "element-basic-demos.html",
+    "url": "avatar-basic-demos",
+    "src": "avatar-basic-demos.html",
     "meta": {
-      "title": "Vaadin Element Basics",
+      "title": "Vaadin Avatar Basics",
       "description": "",
       "image": ""
      }
@@ -14,10 +14,10 @@
   ,
   {
     "name": "Advanced Usage",
-    "url": "element-advanced-demos",
-    "src": "element-advanced-demos.html",
+    "url": "avatar-advanced-demos",
+    "src": "avatar-advanced-demos.html",
     "meta": {
-      "title": "Vaadin Element Advanced Examples",
+      "title": "Vaadin Avatar Advanced Examples",
       "description": "",
       "image": ""
      }

@@ -1,37 +1,37 @@
-# &lt;vaadin-element&gt;
+# &lt;vaadin-avatar&gt;
 
-[&lt;vaadin-element&gt;](https://vaadin.com/components/vaadin-element) is a Web Component providing &lt;element-functionality&gt;, part of the [Vaadin components](https://vaadin.com/components).
+[&lt;vaadin-avatar&gt;](https://vaadin.com/components/vaadin-avatar) is a Web Component providing avatar displaying functionality.
 
-[Live Demo ↗](https://vaadin.com/components/vaadin-element/html-examples)
+[Live Demo ↗](https://vaadin.com/components/vaadin-avatar/html-examples)
 |
-[API documentation ↗](https://vaadin.com/components/vaadin-element/html-api)
+[API documentation ↗](https://vaadin.com/components/vaadin-avatar/html-api)
 
-[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-element)](https://www.npmjs.com/package/@vaadin/vaadin-element)
-[![Bower version](https://badgen.net/github/release/vaadin/vaadin-element)](https://github.com/vaadin/vaadin-element/releases)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-element)
-[![Build Status](https://travis-ci.org/vaadin/vaadin-element.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-element)
-[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-element/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-element?branch=master)
+[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-avatar)](https://www.npmjs.com/package/@vaadin/vaadin-avatar)
+[![Bower version](https://badgen.net/github/release/vaadin/vaadin-avatar)](https://github.com/vaadin/vaadin-avatar/releases)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/vaadin/vaadin-avatar)
+[![Build Status](https://travis-ci.org/vaadin/vaadin-avatar.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-avatar)
+[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-avatar/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-avatar?branch=master)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-element)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadin-element-directory-urlidentifier.svg)](https://vaadin.com/directory/component/vaadinvaadin-element)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-avatar)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadin-avatar-directory-urlidentifier.svg)](https://vaadin.com/directory/component/vaadinvaadin-avatar)
 <!--
 ```
 <custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="vaadin-element.html">
+    <link rel="import" href="vaadin-avatar.html">
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<vaadin-element>
+<vaadin-avatar>
   ...
-</vaadin-element>
+</vaadin-avatar>
 ```
 
-[<img src="https://raw.githubusercontent.com/vaadin/vaadin-element/master/screenshot.png" width="200" alt="Screenshot of vaadin-element">](https://vaadin.com/components/vaadin-element)
+[<img src="https://raw.githubusercontent.com/vaadin/vaadin-avatar/master/screenshot.png" width="200" alt="Screenshot of vaadin-avatar">](https://vaadin.com/components/vaadin-avatar)
 
 
 ## Installation
@@ -44,30 +44,30 @@ The converted ES Modules are only published on npm, not pushed to GitHub reposit
 
 ### Bower (HTML Imports compatible version)
 
-Install `vaadin-element`:
+Install `vaadin-avatar`:
 
 ```sh
-bower i vaadin/vaadin-element --save
+bower i vaadin/vaadin-avatar --save
 ```
 
 Once installed, import it in your application:
 
 ```html
-<link rel="import" href="bower_components/vaadin-element/vaadin-element.html">
+<link rel="import" href="bower_components/vaadin-avatar/vaadin-avatar.html">
 ```
 
 ### npm (ES Modules compatible version)
 
-Install `vaadin-element`:
+Install `vaadin-avatar`:
 
 ```sh
-npm i @vaadin/vaadin-element --save
+npm i @vaadin/vaadin-avatar --save
 ```
 
 Once installed, import it in your application:
 
 ```js
-import '@vaadin/vaadin-element/vaadin-element.js';
+import '@vaadin/vaadin-avatar/vaadin-avatar.js';
 ```
 
 ## Getting started
@@ -80,24 +80,24 @@ To use the Material theme, import the correspondent file from the `theme/materia
 
 - The component with the Lumo theme:
 
-  `theme/lumo/vaadin-element.html`
+  `theme/lumo/vaadin-avatar.html`
 
 - The component with the Material theme:
 
-  `theme/material/vaadin-element.html`
+  `theme/material/vaadin-avatar.html`
 
-- Alias for `theme/lumo/vaadin-element.html`:
+- Alias for `theme/lumo/vaadin-avatar.html`:
 
-  `vaadin-element.html`
+  `vaadin-avatar.html`
 
 
 ## Running demos and tests in a browser
 
-1. Fork the `vaadin-element` repository and clone it locally.
+1. Fork the `vaadin-avatar` repository and clone it locally.
 
 1. Make sure you have [npm](https://www.npmjs.com/) and [Bower](https://bower.io) installed.
 
-1. When in the `vaadin-element` directory, run `npm install` and then `bower install` to install dependencies.
+1. When in the `vaadin-avatar` directory, run `npm install` and then `bower install` to install dependencies.
 
 1. Make sure you have [polymer-cli](https://www.npmjs.com/package/polymer-cli) installed globally: `npm i -g polymer-cli`.
 
@@ -105,13 +105,13 @@ To use the Material theme, import the correspondent file from the `theme/materia
 
 1. You can also open demo or in-browser tests by adding **demo** or **test** to the URL, for example:
 
-  - http://127.0.0.1:3000/components/vaadin-element/demo
-  - http://127.0.0.1:3000/components/vaadin-element/test
+  - http://127.0.0.1:3000/components/vaadin-avatar/demo
+  - http://127.0.0.1:3000/components/vaadin-avatar/test
 
 
 ## Running tests from the command line
 
-1. When in the `vaadin-element` directory, run `npm test`
+1. When in the `vaadin-avatar` directory, run `npm test`
 
 
 ## Following the coding style

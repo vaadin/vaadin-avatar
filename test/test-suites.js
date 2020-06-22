@@ -1,3 +1,3 @@
-window.VaadinElementSuites = [
+window.VaadinAvatarSuites = [
   'sample-test.html'
 ];

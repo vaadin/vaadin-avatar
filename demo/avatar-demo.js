@@ -1,5 +1,5 @@
 /* @polymerMixin */
-window.ElementDemo = superClass => {
+window.AvatarDemo = superClass => {
   return class extends superClass {
     static get properties() {
       return {
