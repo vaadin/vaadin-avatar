@@ -22,13 +22,11 @@ jobs:
     - if: type = pull_request
       env: POLYMER=2
       addons:
-        firefox: "66.0"
-        chrome: stable
+        chrome: latest
     - if: type = pull_request
       env: POLYMER=3
       addons:
-        firefox: "66.0"
-        chrome: stable
+        chrome: latest
     - if: type = cron
       env: TEST_SUITE=unit_tests POLYMER=2
 
