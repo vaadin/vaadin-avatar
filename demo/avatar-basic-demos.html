@@ -6,15 +6,58 @@
       }
     </style>
 
-
-    <h3>Sample example</h3>
-    <vaadin-demo-snippet id="avatar-basic-demos-sample-example" when-defined="vaadin-avatar">
+    <h3>Basic usage</h3>
+    <vaadin-demo-snippet id="avatar-basic-demos-basic-usage" when-defined="vaadin-avatar">
       <template preserve-content>
-        <vaadin-avatar></vaadin-avatar>
+        <vaadin-avatar img="https://vaadin.com/static/content/view/company/team/photos/Yuriy-Yevstihnyeyev.JPG"></vaadin-avatar>
+        <vaadin-avatar name="Serhii Kulykov"></vaadin-avatar>
+        <vaadin-avatar abbr="YY"></vaadin-avatar>
+      </template>
+    </vaadin-demo-snippet>
+
+    <h3>Combined properties</h3>
+    <vaadin-demo-snippet id="avatar-basic-demos-combined-props" when-defined="vaadin-avatar">
+      <template preserve-content>
+        <vaadin-avatar img="https://vaadin.com/static/content/view/company/team/photos/Yuriy-Yevstihnyeyev.JPG"></vaadin-avatar>
+
+        <br />
+
+        <vaadin-checkbox-group label="Set property values" theme="vertical">
+          <vaadin-checkbox value="img" checked>`img` = `photos/Yuriy-Yevstihnyeyev.JPG`</vaadin-checkbox>
+          <vaadin-checkbox value="name">`name` = `Serhii Kulykov`</vaadin-checkbox>
+          <vaadin-checkbox value="abbr">`abbr` = `YY`</vaadin-checkbox>
+        </vaadin-checkbox-group>
         <script>
-          window.addDemoReadyListener('#avatar-basic-demos-sample-example', function(document) {
+          window.addDemoReadyListener('#avatar-basic-demos-combined-props', function(document) {
             const avatar = document.querySelector('vaadin-avatar');
             avatar.textContent = 'Foobar';
+
+            const props = ['img', 'name', 'abbr'];
+            const checkboxGroup = document.querySelector('vaadin-checkbox-group');
+            checkboxGroup.addEventListener('change', function(event) {
+
+              const setValues = props.filter(prop =>
+                checkboxGroup.value.indexOf(prop) > -1);
+
+              setValues.forEach(prop => {
+                switch (prop) {
+                  case 'img':
+                    avatar.img = 'https://vaadin.com/static/content/view/company/team/photos/Yuriy-Yevstihnyeyev.JPG';
+                    break;
+                  case 'name':
+                    avatar.name = 'Serhii Kulykov';
+                    break;
+                  case 'abbr':
+                    avatar.abbr = 'YY';
+                    break;
+                  default:
+                }
+              });
+
+              // Clean up props
+              props.filter(prop => setValues.indexOf(prop) == -1)
+                .forEach(prop => avatar[prop] = undefined);
+            });
           });
         </script>
       </template>
