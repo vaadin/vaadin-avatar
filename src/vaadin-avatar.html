@@ -5,21 +5,49 @@ This program is available under Apache License Version 2.0, available at https:/
 -->
 
 <link rel="import" href="../../polymer/polymer-element.html">
+<link rel="import" href="../../iron-icon/iron-icon.html">
 <link rel="import" href="../../vaadin-themable-mixin/vaadin-themable-mixin.html">
 <link rel="import" href="../../vaadin-element-mixin/vaadin-element-mixin.html">
+<link rel="import" href="vaadin-avatar-iconset.html">
+
 
 <dom-module id="vaadin-avatar">
   <template>
     <style>
       :host {
         display: inline-block;
+        border-radius: 50%;
+        overflow: hidden;
+        height: 44px;
+        width: 44px;
+        font-size: 1em;
+      }
+
+      img,
+      svg,
+      iron-icon {
+        height: 100%;
+        width: 100%;
+      }
+
+      iron-icon {
+        transform: scale(0.8);
+      }
+
+      svg {
+        font-size: 3em;
+        user-select: none;
       }
 
       :host([hidden]) {
         display: none !important;
       }
     </style>
-    <slot></slot>
+    <iron-icon hidden$="[[__iconHidden]]" id="avatar-icon" icon="avatar:user"></iron-icon>
+    <img hidden$="[[__imgHidden]]" src$="[[img]]" alt="[[name]]"/>
+    <svg hidden$="[[__imgHidden]]" id="avatar-abbr" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet">
+      <text dy=".31em" text-anchor="middle">[[abbr]]</text>
+    </svg>
   </template>
 
   <script>
@@ -47,7 +75,77 @@ This program is available under Apache License Version 2.0, available at https:/
 
         static get properties() {
           return {
+            img: {
+              type: String,
+              reflectToAttribute: true
+            },
+
+            abbr: {
+              type: String,
+              reflectToAttribute: true
+            },
+
+            name: {
+              type: String,
+              observer: '__nameChanged',
+              reflectToAttribute: true
+            },
+
+            __iconHidden: {
+              type: Boolean,
+              computed: '__computeIconHidden(img, abbr)'
+            },
+
+            __imgHidden: {
+              type: Boolean,
+              computed: '__computeImgHidden(img, abbr)'
+            }
           };
+        }
+
+        static get observers() {
+          return [
+            '__imgAbbrNameChanged(img, abbr, name)',
+          ];
+        }
+
+        ready() {
+          super.ready();
+
+          this.__setTitleFromName(this.name);
+        }
+
+        __computeImgHidden(img) {
+          return !img;
+        }
+
+        __computeIconHidden(img, abbr) {
+          return !!img || !!abbr;
+        }
+
+        __imgAbbrNameChanged(img, abbr, name) {
+          if (img ||
+            (abbr && abbr !== this.__generatedAbbr)) {
+            return;
+          }
+
+          if (name) {
+            this.abbr = this.__generatedAbbr = name.split(' ').map(word => word.charAt(0)).join('');
+          } else {
+            this.abbr = undefined;
+          }
+        }
+
+        __nameChanged(name) {
+          this.__setTitleFromName(name);
+        }
+
+        __setTitleFromName(name) {
+          if (name) {
+            this.setAttribute('title', name);
+          } else {
+            this.setAttribute('title', 'anonymous');
+          }
         }
       }
 
