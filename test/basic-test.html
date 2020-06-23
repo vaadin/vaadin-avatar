@@ -1,0 +1,91 @@
+<!doctype html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>vaadin-avatar tests</title>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../vaadin-avatar.html">
+</head>
+
+<body>
+  <test-fixture id="default">
+    <template>
+      <vaadin-avatar></vaadin-avatar>
+    </template>
+  </test-fixture>
+
+  <script>
+    describe('basic test', function() {
+      var avatar;
+
+      beforeEach(function() {
+        avatar = fixture('default');
+      });
+
+      it('should not expose class name globally', function() {
+        expect(window.VaadinAvatar).not.to.be.ok;
+      });
+
+      describe('properties', function() {
+
+        it('should have empty "img" prop set by default', function() {
+          expect(avatar.img).to.be.undefined;
+        });
+
+        it('should not have "name" prop set by default', function() {
+          expect(avatar.name).to.be.undefined;
+        });
+
+        describe('abbr property', function() {
+
+          it('should not have "abbr" prop set by default', function() {
+            expect(avatar.abbr).to.be.undefined;
+          });
+
+          it('should generate abbreviation from name if none provided', function() {
+            avatar.name = 'Foo Bar';
+            expect(avatar.abbr).to.equal('FB');
+          });
+
+          it('should not generate abbreviation from name if it is provided', function() {
+            avatar.abbr = 'BB';
+            avatar.name = 'Foo Bar';
+            expect(avatar.abbr).to.equal('BB');
+          });
+
+          it('should re-generate abbreviation from name if abbr was unset', function() {
+            avatar.abbr = 'BB';
+            avatar.name = 'Foo Bar';
+            expect(avatar.abbr).to.equal('BB');
+
+            avatar.abbr = '';
+            expect(avatar.abbr).to.equal('FB');
+          });
+
+          it('should clean up abbreviation if name and abbr was unset', function() {
+            avatar.abbr = 'BB';
+            avatar.name = 'Foo Bar';
+
+            avatar.abbr = '';
+            avatar.name = '';
+
+            expect(avatar.abbr).to.be.undefined;
+          });
+
+          it('should re-generate abbreviation from name if it was changed', function() {
+            avatar.name = 'Foo Bar';
+            expect(avatar.abbr).to.equal('FB');
+
+            avatar.name = 'Bar Baz';
+            expect(avatar.abbr).to.equal('BB');
+          });
+
+        });
+
+      });
+
+    });
+  </script>
+</body>
