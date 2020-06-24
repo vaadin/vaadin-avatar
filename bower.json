@@ -40,8 +40,5 @@
     "web-component-tester": "^6.1.5",
     "vaadin-demo-helpers": "vaadin/vaadin-demo-helpers#^3.0.0",
     "vaadin-checkbox": "vaadin/vaadin-checkbox#^2.3.0"
-  },
-  "resolutions": {
-    "vaadin-element-mixin": "^2.0.0"
   }
 }
