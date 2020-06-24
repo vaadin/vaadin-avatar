@@ -61,20 +61,27 @@ This program is available under Apache License Version 2.0, available at https:/
              */
             img: {
               type: String,
-              reflectToAttribute: true
+              reflectToAttribute: true,
+              observer: '__imgChanged'
             },
 
             /** @private */
-            __imgVisible: {
-              type: Boolean,
-              computed: '__computeImgVisible(img)',
-              value: false
-            }
+            __imgVisible: Boolean
           };
         }
 
-        __computeImgVisible(img) {
-          return !!img;
+        ready() {
+          super.ready();
+
+          this.__updateVisibility();
+        }
+
+        __imgChanged(img) {
+          this.__updateVisibility();
+        }
+
+        __updateVisibility() {
+          this.__imgVisible = !!this.img;
         }
       }
 
