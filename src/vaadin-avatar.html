@@ -29,7 +29,7 @@ This program is available under Apache License Version 2.0, available at https:/
         font-size: 5.6em;
       }
 
-      svg#avatar-icon > text::before {
+      svg#avatar-icon > text {
         font-family: 'vaadin-avatar-icons';
       }
 
@@ -98,10 +98,6 @@ This program is available under Apache License Version 2.0, available at https:/
 
         __updateVisibility() {
           this.__imgVisible = !!this.img;
-        }
-
-        __computeImgVisible(img) {
-          return !!img;
         }
       }
 
