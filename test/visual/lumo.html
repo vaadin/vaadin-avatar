@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../theme/lumo/vaadin-avatar.html">
+  <script>
+    const variant = window.location.search.replace(/.*variant=(\w+).*/, '$1') || 'light';
+    document.documentElement.setAttribute('theme', variant);
+  </script>
+  <custom-style>
+    <style include="lumo-color">
+    </style>
+  </custom-style>
+</head>
+
+<body>
+
+  <div id="default-tests" style="width: 600px;">
+    <vaadin-avatar></vaadin-avatar>
+    <vaadin-avatar theme="size-m"></vaadin-avatar>
+    <vaadin-avatar theme="size-s"></vaadin-avatar>
+    <br>
+    <vaadin-avatar name="Foo Bar"></vaadin-avatar>
+    <vaadin-avatar name="Foo Bar" theme="size-m"></vaadin-avatar>
+    <vaadin-avatar name="Foo Bar" theme="size-s"></vaadin-avatar>
+    <br>
+    <vaadin-avatar theme="square"></vaadin-avatar>
+    <vaadin-avatar theme="square size-m"></vaadin-avatar>
+    <vaadin-avatar theme="square size-s"></vaadin-avatar>
+    <br>
+  </div>
+
+</body>
