@@ -57,13 +57,15 @@ This program is available under Apache License Version 2.0, available at https:/
        * @mixes Vaadin.ThemableMixin
        * @demo demo/index.html
        */
-      class VaadinAvatarGroup extends
+      class AvatarGroupElement extends
         Vaadin.ElementMixin(
           Vaadin.ThemableMixin(
             Polymer.mixinBehaviors([Polymer.IronResizableBehavior], Polymer.Element))) {
+
         static get is() {
           return 'vaadin-avatar-group';
         }
+
         static get version() {
           return '0.1.0';
         }
@@ -102,12 +104,12 @@ This program is available under Apache License Version 2.0, available at https:/
         }
       }
 
-      customElements.define(VaadinAvatarGroup.is, VaadinAvatarGroup);
+      customElements.define(AvatarGroupElement.is, AvatarGroupElement);
 
       /**
        * @namespace Vaadin
        */
-      window.Vaadin.VaadinAvatarGroup = VaadinAvatarGroup;
+      window.Vaadin.AvatarGroupElement = AvatarGroupElement;
     })();
   </script>
 </dom-module>
