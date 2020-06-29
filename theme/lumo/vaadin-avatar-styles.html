@@ -9,12 +9,13 @@
     <style>
       :host {
         box-sizing: border-box;
-        width: var(--lumo-size-l);
-        height: var(--lumo-size-l);
+        width: var(--lumo-size-m);
+        height: var(--lumo-size-m);
         color: var(--lumo-secondary-text-color);
         background-color: var(--lumo-contrast-10pct);
         border-radius: 50%;
         cursor: default;
+        user-select: none;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -29,14 +30,24 @@
         font-weight: 500;
       }
 
-      :host([theme~="size-m"]) {
-        width: var(--lumo-size-m);
-        height: var(--lumo-size-m);
+      :host([theme~="xlarge"]) {
+        width: var(--lumo-size-xl);
+        height: var(--lumo-size-xl);
       }
 
-      :host([theme~="size-s"]) {
+      :host([theme~="large"]) {
+        width: var(--lumo-size-l);
+        height: var(--lumo-size-l);
+      }
+
+      :host([theme~="small"]) {
         width: var(--lumo-size-s);
         height: var(--lumo-size-s);
+      }
+
+      :host([theme~="xsmall"]) {
+        width: var(--lumo-size-xs);
+        height: var(--lumo-size-xs);
       }
 
       :host([theme~="square"]) {
