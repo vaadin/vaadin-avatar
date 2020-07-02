@@ -130,8 +130,7 @@ This program is available under Apache License Version 2.0, available at https:/
              */
             name: {
               type: String,
-              reflectToAttribute: true,
-              observer: '__nameChanged'
+              reflectToAttribute: true
             },
 
             /** @private */
@@ -156,8 +155,10 @@ This program is available under Apache License Version 2.0, available at https:/
 
           this.__updateVisibility();
 
-          // Should set `anonymous` if name is not provided
-          this.__setTitleFromName(this.name);
+          // Should set `anonymous` if name / abbr is not provided
+          if (!this.name && !this.abbr) {
+            this.__setTitleFromName(this.name);
+          }
 
           if (!this.hasAttribute('tabindex')) {
             this.setAttribute('tabindex', '0');
@@ -188,8 +189,10 @@ This program is available under Apache License Version 2.0, available at https:/
         __imgOrAbbrOrNameChanged(img, abbr, name) {
           this.__updateVisibility();
 
-          if (img ||
-            (abbr && abbr !== this.__generatedAbbr)) {
+          if (img || (abbr && abbr !== this.__generatedAbbr)) {
+            if (abbr) {
+              this.__setTitleFromName(abbr);
+            }
             return;
           }
 
@@ -198,16 +201,14 @@ This program is available under Apache License Version 2.0, available at https:/
           } else {
             this.abbr = undefined;
           }
+
+          this.__setTitleFromName(name);
         }
 
         __updateVisibility() {
           this.__imgVisible = !!this.img;
           this.__abbrVisible = !this.img && !!this.abbr;
           this.__iconVisible = !this.img && !this.abbr;
-        }
-
-        __nameChanged(name) {
-          this.__setTitleFromName(name);
         }
 
         __setTitleFromName(name) {
