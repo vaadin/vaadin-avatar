@@ -32,15 +32,15 @@ This program is available under Apache License Version 2.0, available at https:/
       }
 
       [part="avatar"]:not([dir="rtl"]):not(:first-child) {
-        margin-left: calc(var(--vaadin-avatar-group-overlap) * -1 - var(--vaadin-avatar-outline-width) * 1);
+        margin-left: calc(var(--vaadin-avatar-group-overlap) * -1 - var(--vaadin-avatar-outline-width));
         -webkit-mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
         mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
       }
 
       [part="avatar"][dir="rtl"]:not(:first-child) {
         margin-right: calc(var(--vaadin-avatar-group-overlap) * -1);
-        -webkit-mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width) * 1);
-        mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width) * 1);
+        -webkit-mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width));
+        mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width));
       }
     </style>
     <div id="container">
