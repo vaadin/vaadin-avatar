@@ -162,6 +162,7 @@
           group.style.width = '110px';
           group.dispatchEvent(new CustomEvent('iron-resize'));
           await nextRender(group);
+          Polymer.flush();
           const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
           expect(items.length).to.equal(3);
           expect(overflow.abbr).to.equal('+3');
@@ -171,6 +172,7 @@
           group.style.width = '110px';
           group.notifyResize();
           await nextRender(group);
+          Polymer.flush();
           const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
           expect(items.length).to.equal(3);
           expect(overflow.abbr).to.equal('+3');
@@ -180,8 +182,10 @@
           group.style.width = '110px';
           group.dispatchEvent(new CustomEvent('iron-resize'));
           await nextRender(group);
+          Polymer.flush();
           group.items = group.items.slice(0, 2);
           await nextRender(group);
+          Polymer.flush();
           expect(overflow.hasAttribute('hidden')).to.be.true;
         });
 
@@ -193,6 +197,7 @@
           });
           group.style.width = '110px';
           group.notifyResize();
+          Polymer.flush();
           nextRender(group).then(() => overflow.click());
         });
 
@@ -200,6 +205,7 @@
           overlay.addEventListener('vaadin-overlay-open', () => {
             group.style.width = '75px';
             group.notifyResize();
+            Polymer.flush();
             nextRender(group).then(() => {
               const items = overlay.content.querySelectorAll('[theme="avatar-group-item"]');
               expect(items.length).to.equal(4);
@@ -208,6 +214,7 @@
           });
           group.style.width = '110px';
           group.notifyResize();
+          Polymer.flush();
           nextRender(group).then(() => overflow.click());
         });
 
@@ -215,6 +222,7 @@
           overlay.addEventListener('vaadin-overlay-open', () => {
             group.style.width = '';
             group.notifyResize();
+            Polymer.flush();
             nextRender(group).then(() => {
               expect(overlay.opened).to.be.false;
               done();
@@ -222,6 +230,7 @@
           });
           group.style.width = '110px';
           group.notifyResize();
+          Polymer.flush();
           nextRender(group).then(() => overflow.click());
         });
       });
