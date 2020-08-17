@@ -10,5 +10,8 @@ export interface AvatarI18n {
 }
 
 export interface AvatarGroupI18n extends AvatarI18n {
-  currentUsers: string;
+  activeUsers: {
+    one: string;
+    many: string;
+  };
 }
