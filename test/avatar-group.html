@@ -170,6 +170,7 @@
         it('should render avatars using notifyResize', async() => {
           group.style.width = '100px';
           group.notifyResize();
+          window.ShadyDOM && window.ShadyDOM.flush();
           await nextRender(group);
           const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
           expect(items.length).to.equal(3);
@@ -179,6 +180,7 @@
         it('should re-render avatars on items change', async() => {
           group.style.width = '100px';
           group.dispatchEvent(new CustomEvent('iron-resize'));
+          window.ShadyDOM && window.ShadyDOM.flush();
           await nextRender(group);
           group.items = group.items.slice(0, 2);
           await nextRender(group);
@@ -193,6 +195,7 @@
           });
           group.style.width = '100px';
           group.notifyResize();
+          window.ShadyDOM && window.ShadyDOM.flush();
           nextRender(group).then(() => overflow.click());
         });
 
@@ -200,6 +203,7 @@
           overlay.addEventListener('vaadin-overlay-open', () => {
             group.style.width = '75px';
             group.notifyResize();
+            window.ShadyDOM && window.ShadyDOM.flush();
             nextRender(group).then(() => {
               const items = overlay.content.querySelectorAll('[theme="avatar-group-item"]');
               expect(items.length).to.equal(4);
@@ -208,6 +212,7 @@
           });
           group.style.width = '100px';
           group.notifyResize();
+          window.ShadyDOM && window.ShadyDOM.flush();
           nextRender(group).then(() => overflow.click());
         });
 
