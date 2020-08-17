@@ -205,8 +205,8 @@
           overlay.addEventListener('vaadin-overlay-open', () => {
             group.style.width = '75px';
             group.notifyResize();
-            Polymer.flush();
             nextRender(group).then(() => {
+              Polymer.flush();
               const items = overlay.content.querySelectorAll('[theme="avatar-group-item"]');
               expect(items.length).to.equal(4);
               done();
@@ -214,8 +214,10 @@
           });
           group.style.width = '110px';
           group.notifyResize();
-          Polymer.flush();
-          nextRender(group).then(() => overflow.click());
+          nextRender(group).then(() => {
+            Polymer.flush();
+            overflow.click();
+          });
         });
 
         it('should close overlay on resize when all avatars fit', done => {
