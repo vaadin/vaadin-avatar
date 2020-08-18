@@ -222,6 +222,10 @@ This program is available under Apache License Version 2.0, available at https:/
           this.addEventListener('iron-resize', this._onResize.bind(this));
 
           this._overlayElement = this.shadowRoot.querySelector('vaadin-avatar-group-overlay');
+
+          Polymer.RenderStatus.afterNextRender(this, () => {
+            this.__setItemsInView();
+          });
         }
 
         /**
