@@ -16,6 +16,26 @@
         mask-position: calc(50% + var(--lumo-size-m) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width));
       }
 
+      :host([theme~="xlarge"]) {
+        --vaadin-avatar-group-overlap: 12px;
+        --vaadin-avatar-group-overlap-border: 3px;
+      }
+
+      :host([theme~="large"]) {
+        --vaadin-avatar-group-overlap: 10px;
+        --vaadin-avatar-group-overlap-border: 3px;
+      }
+
+      :host([theme~="small"]) {
+        --vaadin-avatar-group-overlap: 6px;
+        --vaadin-avatar-group-overlap-border: 2px;
+      }
+
+      :host([theme~="xsmall"]) {
+        --vaadin-avatar-group-overlap: 4px;
+        --vaadin-avatar-group-overlap-border: 2px;
+      }
+
       :host([theme~="xlarge"]) [part="avatar"]:not([dir="rtl"]):not(:first-child) {
         -webkit-mask-position: calc(50% - var(--lumo-size-xl) + var(--vaadin-avatar-group-overlap));
         mask-position: calc(50% - var(--lumo-size-xl) + var(--vaadin-avatar-group-overlap));
