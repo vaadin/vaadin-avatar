@@ -380,7 +380,7 @@ This program is available under Apache License Version 2.0, available at https:/
 
         /** @private */
         __computeMore(items, itemsInView, maxItemsVisible) {
-          return maxItemsVisible != null ? `+${items - this.__getMax(maxItemsVisible) + 1}` : `+${items - itemsInView}`;
+          return `+${items - this.__getLimit(items, itemsInView, maxItemsVisible)}`;
         }
 
         /** @private */

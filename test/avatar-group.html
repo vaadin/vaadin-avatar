@@ -120,18 +120,6 @@
           group.$.overlay.close();
         });
 
-        it('should consider element width when maxItemsVisible is set', async() => {
-          group.maxItemsVisible = 4;
-          await nextRender(group);
-
-          group.style.width = '100px';
-          group.notifyResize();
-          await nextRender(group);
-
-          const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
-          expect(items.length).to.equal(3);
-        });
-
         it('should show at least two avatars if maxItemsVisible is below 2', async() => {
           group.maxItemsVisible = 1;
           await nextRender(group);
@@ -172,6 +160,31 @@
           group.splice('items', 1, 3);
           await nextRender(group);
           expect(group.$.overflow.hasAttribute('hidden')).to.be.true;
+        });
+
+        describe('width is set', () => {
+          beforeEach(async() => {
+            group.maxItemsVisible = 4;
+            await nextRender(group);
+          });
+
+          it('should consider element width when maxItemsVisible is set', async() => {
+            group.style.width = '100px';
+            group.notifyResize();
+            await nextRender(group);
+
+            const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
+            expect(items.length).to.equal(3);
+          });
+
+          it('should set abbr property correctly if maxItemsVisible and width are set', async() => {
+            group.style.width = '100px';
+            group.notifyResize();
+            await nextRender(group);
+
+            const overflow = group.$.overflow;
+            expect(overflow.abbr).to.equal('+3');
+          });
         });
       });
 
