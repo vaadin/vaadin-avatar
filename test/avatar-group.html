@@ -120,6 +120,18 @@
           group.$.overlay.close();
         });
 
+        it('should consider element width when maxItemsVisible is set', async() => {
+          group.maxItemsVisible = 4;
+          await nextRender(group);
+
+          group.style.width = '100px';
+          group.notifyResize();
+          await nextRender(group);
+
+          const items = group.shadowRoot.querySelectorAll('vaadin-avatar');
+          expect(items.length).to.equal(3);
+        });
+
         it('should show at least two avatars if maxItemsVisible is below 2', async() => {
           group.maxItemsVisible = 1;
           await nextRender(group);
