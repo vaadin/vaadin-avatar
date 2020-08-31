@@ -168,8 +168,9 @@
             await nextRender(group);
           });
 
+          const isIE = !!(navigator.userAgent.match(/Trident/) && !navigator.userAgent.match(/MSIE/));
           it('should consider element width when maxItemsVisible is set', async() => {
-            group.style.width = '100px';
+            group.style.width = isIE ? '110px' : '100px';
             group.notifyResize();
             await nextRender(group);
 
@@ -178,7 +179,7 @@
           });
 
           it('should set abbr property correctly if maxItemsVisible and width are set', async() => {
-            group.style.width = '100px';
+            group.style.width = isIE ? '110px' : '100px';
             group.notifyResize();
             await nextRender(group);
 
