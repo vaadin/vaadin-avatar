@@ -247,8 +247,8 @@ This program is available under Apache License Version 2.0, available at https:/
             // check if custom CSS property is defined
             const isValid = Boolean(
               isShady ?
-              window.ShadyCSS.getComputedStyleValue(document.documentElement, prop) :
-              getComputedStyle(document.documentElement).getPropertyValue(prop)
+                window.ShadyCSS.getComputedStyleValue(document.documentElement, prop) :
+                getComputedStyle(document.documentElement).getPropertyValue(prop)
             );
 
             if (isValid) {
