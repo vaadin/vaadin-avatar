@@ -13,6 +13,17 @@
   }
   ,
   {
+    "name": "Avatar group",
+    "url": "avatar-group-demos",
+    "src": "avatar-group-demos.html",
+    "meta": {
+      "title": "Vaadin Avatar Group",
+      "description": "",
+      "image": ""
+     }
+  }
+  ,
+  {
     "name": "Accessibility",
     "url": "avatar-a11y-demos",
     "src": "avatar-a11y-demos.html",
