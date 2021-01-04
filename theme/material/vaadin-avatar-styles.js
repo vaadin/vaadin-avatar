@@ -1,7 +1,8 @@
-<link rel="import" href="../../../vaadin-material-styles/color.html">
-<link rel="import" href="../../../vaadin-material-styles/typography.html">
+import '@vaadin/vaadin-material-styles/color.js';
+import '@vaadin/vaadin-material-styles/typography.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="material-avatar" theme-for="vaadin-avatar">
+const $_documentContainer = html`<dom-module id="material-avatar" theme-for="vaadin-avatar">
   <template>
     <style>
       :host {
@@ -37,4 +38,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

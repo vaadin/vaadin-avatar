@@ -1,7 +1,8 @@
-<link rel="import" href="../../../vaadin-material-styles/color.html">
-<link rel="import" href="../../../vaadin-material-styles/mixins/menu-overlay.html">
+import '@vaadin/vaadin-material-styles/color.js';
+import '@vaadin/vaadin-material-styles/mixins/menu-overlay.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="material-avatar-group-overlay" theme-for="vaadin-avatar-group-overlay">
+const $_documentContainer = html`<dom-module id="material-avatar-group-overlay" theme-for="vaadin-avatar-group-overlay">
   <template>
     <style include="material-menu-overlay">
       [part="overlay"] {
@@ -9,9 +10,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="material-avatar-group-list-box" theme-for="vaadin-avatar-group-list-box">
+</dom-module><dom-module id="material-avatar-group-list-box" theme-for="vaadin-avatar-group-list-box">
   <template>
     <style>
       [part="items"] ::slotted(vaadin-item[theme="avatar-group-item"]) {
@@ -29,9 +28,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="material-avatar-group-item" theme-for="vaadin-item">
+</dom-module><dom-module id="material-avatar-group-item" theme-for="vaadin-item">
   <template>
     <style>
       :host([theme="avatar-group-item"]) [part="content"] {
@@ -48,4 +45,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

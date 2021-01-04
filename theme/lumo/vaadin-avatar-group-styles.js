@@ -1,48 +1,10 @@
-<link rel="import" href="../../../vaadin-lumo-styles/color.html">
-<link rel="import" href="../../../vaadin-lumo-styles/sizing.html">
-<link rel="import" href="../../../vaadin-lumo-styles/spacing.html">
-<link rel="import" href="../../../vaadin-lumo-styles/mixins/menu-overlay.html">
+import '@vaadin/vaadin-lumo-styles/color.js';
+import '@vaadin/vaadin-lumo-styles/sizing.js';
+import '@vaadin/vaadin-lumo-styles/spacing.js';
+import '@vaadin/vaadin-lumo-styles/mixins/menu-overlay.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<script>
-  (function() {
-    const isIE = !!(navigator.userAgent.match(/Trident/) && !navigator.userAgent.match(/MSIE/));
-
-    // NOTE(web-padawan): re-declaring same custom CSS property crashes IE11
-    if (!isIE) {
-      const AvatarGroupStyles = document.createElement('dom-module');
-      AvatarGroupStyles.setAttribute('theme-for', 'vaadin-avatar-group');
-
-      const tpl = document.createElement('template');
-      tpl.innerHTML = `
-        <style>
-          :host([theme~="xlarge"]) {
-            --vaadin-avatar-group-overlap: 12px;
-            --vaadin-avatar-group-overlap-border: 3px;
-          }
-
-          :host([theme~="large"]) {
-            --vaadin-avatar-group-overlap: 10px;
-            --vaadin-avatar-group-overlap-border: 3px;
-          }
-
-          :host([theme~="small"]) {
-            --vaadin-avatar-group-overlap: 6px;
-            --vaadin-avatar-group-overlap-border: 2px;
-          }
-
-          :host([theme~="xsmall"]) {
-            --vaadin-avatar-group-overlap: 4px;
-            --vaadin-avatar-group-overlap-border: 2px;
-          }
-        </style>
-      `;
-      AvatarGroupStyles.appendChild(tpl);
-      AvatarGroupStyles.register('lumo-avatar-group-variants');
-    }
-  })();
-</script>
-
-<dom-module id="lumo-avatar-group" theme-for="vaadin-avatar-group">
+const $_documentContainer = html`<dom-module id="lumo-avatar-group" theme-for="vaadin-avatar-group">
   <template>
     <style>
       [part="avatar"]:not([dir="rtl"]):not(:first-child) {
@@ -96,9 +58,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="lumo-avatar-group-overlay" theme-for="vaadin-avatar-group-overlay">
+</dom-module><dom-module id="lumo-avatar-group-overlay" theme-for="vaadin-avatar-group-overlay">
   <template>
     <style include="lumo-overlay lumo-menu-overlay-core">
       :host {
@@ -111,9 +71,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="lumo-avatar-group-list-box" theme-for="vaadin-avatar-group-list-box">
+</dom-module><dom-module id="lumo-avatar-group-list-box" theme-for="vaadin-avatar-group-list-box">
   <template>
     <style>
       [part="items"] ::slotted(vaadin-item[theme="avatar-group-item"]) {
@@ -127,9 +85,7 @@
       }
     </style>
   </template>
-</dom-module>
-
-<dom-module id="lumo-avatar-group-item" theme-for="vaadin-item">
+</dom-module><dom-module id="lumo-avatar-group-item" theme-for="vaadin-item">
   <template>
     <style>
       :host([theme="avatar-group-item"]) [part="content"] {
@@ -151,4 +107,40 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);
+const isIE = !!(navigator.userAgent.match(/Trident/) && !navigator.userAgent.match(/MSIE/));
+
+// NOTE(web-padawan): re-declaring same custom CSS property crashes IE11
+if (!isIE) {
+  const AvatarGroupStyles = document.createElement('dom-module');
+  AvatarGroupStyles.setAttribute('theme-for', 'vaadin-avatar-group');
+
+  const tpl = document.createElement('template');
+  tpl.innerHTML = `
+    <style>
+      :host([theme~="xlarge"]) {
+        --vaadin-avatar-group-overlap: 12px;
+        --vaadin-avatar-group-overlap-border: 3px;
+      }
+
+      :host([theme~="large"]) {
+        --vaadin-avatar-group-overlap: 10px;
+        --vaadin-avatar-group-overlap-border: 3px;
+      }
+
+      :host([theme~="small"]) {
+        --vaadin-avatar-group-overlap: 6px;
+        --vaadin-avatar-group-overlap-border: 2px;
+      }
+
+      :host([theme~="xsmall"]) {
+        --vaadin-avatar-group-overlap: 4px;
+        --vaadin-avatar-group-overlap-border: 2px;
+      }
+    </style>
+  `;
+  AvatarGroupStyles.appendChild(tpl);
+  AvatarGroupStyles.register('lumo-avatar-group-variants');
+}
