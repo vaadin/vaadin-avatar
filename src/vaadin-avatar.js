@@ -267,25 +267,13 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   __colorIndexChanged(index) {
     if (index != null) {
       const prop = `--vaadin-user-color-${index}`;
-      const isShady = window.ShadyCSS && !window.ShadyCSS.nativeCss;
 
       // check if custom CSS property is defined
-      const isValid = Boolean(
-        isShady
-          ? window.ShadyCSS.getComputedStyleValue(document.documentElement, prop)
-          : getComputedStyle(document.documentElement).getPropertyValue(prop)
-      );
+      const isValid = Boolean(getComputedStyle(document.documentElement).getPropertyValue(prop));
 
       if (isValid) {
-        const color = `var(${prop})`;
         this.setAttribute('has-color-index', '');
-        if (isShady) {
-          window.ShadyCSS.styleSubtree(this, {
-            '--vaadin-avatar-user-color': color
-          });
-        } else {
-          this.style.setProperty('--vaadin-avatar-user-color', color);
-        }
+        this.style.setProperty('--vaadin-avatar-user-color', `var(${prop})`);
       } else {
         this.removeAttribute('has-color-index');
         console.warn(`The CSS property --vaadin-user-color-${index} is not defined`);

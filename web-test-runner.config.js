@@ -14,10 +14,10 @@ const config = {
   coverageConfig: {
     include: ['**/src/*'],
     threshold: {
-      statements: 98,
-      branches: 84,
+      statements: 99,
+      branches: 86,
       functions: 100,
-      lines: 98
+      lines: 99
     }
   },
   // Ignore missing color index warnings.
@@ -28,7 +28,7 @@ if (process.env.TEST_ENV === 'sauce') {
   const sauceLabsLauncher = createSauceLabsLauncher(
     {
       user: process.env.SAUCE_USERNAME,
-      key: process.env.SAUCE_ACCESS_KEY,
+      key: process.env.SAUCE_ACCESS_KEY
     },
     {
       name: 'vaadin-avatar unit tests',
@@ -36,7 +36,7 @@ if (process.env.TEST_ENV === 'sauce') {
       recordScreenshots: false,
       recordVideo: false
     }
-  );;
+  );
 
   config.concurrency = 1;
   config.browsers = [
