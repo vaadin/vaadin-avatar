@@ -1,30 +1,14 @@
-<!doctype html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>vaadin-avatar tests</title>
-  <script src="../../../wct-browser-legacy/browser.js"></script>
-  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
-  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
-  <script type="module" src="../vaadin-avatar.js"></script>
-</head>
-
-<body>
-  <test-fixture id="default">
-    <template>
-      <vaadin-avatar></vaadin-avatar>
-    </template>
-  </test-fixture>
-
-  <script type="module">
-import '@polymer/test-fixture/test-fixture.js';
+import { expect } from '@esm-bundle/chai';
+import sinon from 'sinon';
+import { fixtureSync } from '@open-wc/testing-helpers';
+import { keyDownOn } from '@polymer/iron-test-helpers/mock-interactions.js';
 import '../vaadin-avatar.js';
-describe('vaadin-avatar', function() {
+
+describe('vaadin-avatar', () => {
   let avatar, imgElement, iconElement, abbrElement;
 
-  beforeEach(function() {
-    avatar = fixture('default');
+  beforeEach(() => {
+    avatar = fixtureSync('<vaadin-avatar></vaadin-avatar>');
     imgElement = avatar.shadowRoot.querySelector('img');
     iconElement = avatar.shadowRoot.querySelector('#avatar-icon');
     abbrElement = avatar.shadowRoot.querySelector('#avatar-abbr');
@@ -44,39 +28,39 @@ describe('vaadin-avatar', function() {
     });
   });
 
-  describe('properties', function() {
-    describe('"img" property', function() {
+  describe('properties', () => {
+    describe('"img" property', () => {
       const imgSrc = 'https://vaadin.com/';
 
-      it('should have undefined "img" prop by default', function() {
+      it('should have undefined "img" prop by default', () => {
         expect(avatar.img).to.be.undefined;
       });
 
-      it('should reflect "img" prop to the attribute', function() {
+      it('should reflect "img" prop to the attribute', () => {
         avatar.img = imgSrc;
         expect(avatar.getAttribute('img')).to.equal(imgSrc);
       });
 
-      it('should propagate "img" to the internal img', function() {
+      it('should propagate "img" to the internal img', () => {
         avatar.img = imgSrc;
         expect(imgElement.src).to.equal(imgSrc);
       });
 
-      it('img should be visible when "img" property is provided', function() {
+      it('img should be visible when "img" property is provided', () => {
         expect(imgElement.hasAttribute('hidden')).to.be.true;
 
         avatar.img = imgSrc;
         expect(imgElement.hasAttribute('hidden')).to.be.false;
       });
 
-      it('icon should be hidden when "img" property is provided', function() {
+      it('icon should be hidden when "img" property is provided', () => {
         expect(iconElement.hasAttribute('hidden')).to.be.false;
 
         avatar.img = imgSrc;
         expect(iconElement.hasAttribute('hidden')).to.be.true;
       });
 
-      it('abbr should be hidden when "img" property is provided', function() {
+      it('abbr should be hidden when "img" property is provided', () => {
         avatar.abbr = 'YY';
         expect(abbrElement.hasAttribute('hidden')).to.be.false;
 
@@ -84,49 +68,49 @@ describe('vaadin-avatar', function() {
         expect(abbrElement.hasAttribute('hidden')).to.be.true;
       });
 
-      it('should set title when both "img" and "name" are set', function() {
+      it('should set title when both "img" and "name" are set', () => {
         avatar.img = imgSrc;
         avatar.name = 'Foo Bar';
         expect(avatar.getAttribute('title')).to.equal('Foo Bar');
       });
     });
 
-    describe('"abbr" property', function() {
-      it('should have undefined "abbr" prop by default', function() {
+    describe('"abbr" property', () => {
+      it('should have undefined "abbr" prop by default', () => {
         expect(avatar.abbr).to.be.undefined;
       });
 
-      it('should reflect "abbr" prop to the attribute', function() {
+      it('should reflect "abbr" prop to the attribute', () => {
         avatar.abbr = 'YY';
         expect(avatar.getAttribute('abbr')).to.equal('YY');
       });
 
-      it('abbr should be visible when "abbr" property is provided', function() {
+      it('abbr should be visible when "abbr" property is provided', () => {
         expect(abbrElement.hasAttribute('hidden')).to.be.true;
         avatar.abbr = 'YY';
 
         expect(abbrElement.hasAttribute('hidden')).to.be.false;
       });
 
-      it('icon should be hidden when "abbr" property is provided', function() {
+      it('icon should be hidden when "abbr" property is provided', () => {
         expect(iconElement.hasAttribute('hidden')).to.be.false;
 
         avatar.abbr = 'YY';
         expect(iconElement.hasAttribute('hidden')).to.be.true;
       });
 
-      it('should generate abbreviation from name if none provided', function() {
+      it('should generate abbreviation from name if none provided', () => {
         avatar.name = 'Foo Bar';
         expect(avatar.abbr).to.equal('FB');
       });
 
-      it('should not generate abbreviation from name if it is provided', function() {
+      it('should not generate abbreviation from name if it is provided', () => {
         avatar.abbr = 'BB';
         avatar.name = 'Foo Bar';
         expect(avatar.abbr).to.equal('BB');
       });
 
-      it('should re-generate abbreviation from name if abbr was unset', function() {
+      it('should re-generate abbreviation from name if abbr was unset', () => {
         avatar.abbr = 'BB';
         avatar.name = 'Foo Bar';
         expect(avatar.abbr).to.equal('BB');
@@ -135,7 +119,7 @@ describe('vaadin-avatar', function() {
         expect(avatar.abbr).to.equal('FB');
       });
 
-      it('should clean up abbreviation if name and abbr was unset', function() {
+      it('should clean up abbreviation if name and abbr was unset', () => {
         avatar.abbr = 'BB';
         avatar.name = 'Foo Bar';
 
@@ -145,7 +129,7 @@ describe('vaadin-avatar', function() {
         expect(avatar.abbr).to.be.undefined;
       });
 
-      it('should re-generate abbreviation from name if it was changed', function() {
+      it('should re-generate abbreviation from name if it was changed', () => {
         avatar.name = 'Foo Bar';
         expect(avatar.abbr).to.equal('FB');
 
@@ -153,40 +137,40 @@ describe('vaadin-avatar', function() {
         expect(avatar.abbr).to.equal('BB');
       });
 
-      it('should use "abbr" prop for setting title', function() {
+      it('should use "abbr" prop for setting title', () => {
         avatar.abbr = 'FB';
         expect(avatar.getAttribute('title')).to.equal('FB');
       });
 
-      it('should set title when both "abbr" and "name" are set', function() {
+      it('should set title when both "abbr" and "name" are set', () => {
         avatar.abbr = 'GG';
         avatar.name = 'Well played';
         expect(avatar.getAttribute('title')).to.equal('Well played (GG)');
       });
     });
 
-    describe('"name" property', function() {
-      it('should have undefined "name" prop by default', function() {
+    describe('"name" property', () => {
+      it('should have undefined "name" prop by default', () => {
         expect(avatar.name).to.be.undefined;
       });
 
-      it('should use "name" prop for setting title', function() {
+      it('should use "name" prop for setting title', () => {
         avatar.name = 'Foo Bar';
         expect(avatar.getAttribute('title')).to.equal('Foo Bar');
       });
 
-      it('if "name" is not provided title should be "anonymous"', function() {
+      it('if "name" is not provided title should be "anonymous"', () => {
         expect(avatar.getAttribute('title')).to.equal('anonymous');
       });
     });
 
     describe('i18n property', () => {
       it('should set default value for i18n property', () => {
-        expect(avatar.i18n).to.deep.equal({anonymous: 'anonymous'});
+        expect(avatar.i18n).to.deep.equal({ anonymous: 'anonymous' });
       });
 
       it('should update title when i18n object is set', () => {
-        avatar.i18n = {anonymous: 'someone'};
+        avatar.i18n = { anonymous: 'someone' };
         expect(avatar.getAttribute('title')).to.equal('someone');
       });
 
@@ -208,13 +192,12 @@ describe('vaadin-avatar', function() {
   });
 
   describe('focus', () => {
-
     function focusin(node) {
-      node.dispatchEvent(new CustomEvent('focusin', {bubbles: true, composed: true}));
+      node.dispatchEvent(new CustomEvent('focusin', { bubbles: true, composed: true }));
     }
 
     function focusout(node) {
-      const event = new CustomEvent('focusout', {bubbles: true, composed: true});
+      const event = new CustomEvent('focusout', { bubbles: true, composed: true });
       node.dispatchEvent(event);
     }
 
@@ -234,7 +217,7 @@ describe('vaadin-avatar', function() {
     });
 
     it('should set focus-ring attribute on avatar focusin after Tab', () => {
-      MockInteractions.keyDownOn(document.body, 9);
+      keyDownOn(document.body, 9);
       focusin(avatar);
       expect(avatar.hasAttribute('focus-ring')).to.be.true;
       focusout(avatar);
@@ -242,7 +225,7 @@ describe('vaadin-avatar', function() {
     });
 
     it('should not set the focus-ring attribute on avatar mousedown', () => {
-      MockInteractions.keyDownOn(document.body, 9);
+      keyDownOn(document.body, 9);
       document.body.dispatchEvent(new MouseEvent('mousedown'));
       focusin(avatar);
       expect(avatar.hasAttribute('focus-ring')).to.be.false;
@@ -250,34 +233,43 @@ describe('vaadin-avatar', function() {
   });
 
   describe('color index', () => {
-    it('should set box-shadow based on color index', () => {
-      window.ShadyCSS.styleSubtree(document.documentElement, {'--vaadin-user-color-0': 'red'});
-      avatar.colorIndex = 0;
-      const {boxShadow} = getComputedStyle(avatar, '::before');
-      expect(['rgb(255, 0, 0)', 'red'].some(v => boxShadow.indexOf(v) > -1)).to.be.true;
+    describe('correct index', () => {
+      before(() => {
+        document.documentElement.style.setProperty('--vaadin-user-color-0', 'red');
+      });
+
+      it('should set box-shadow based on color index', () => {
+        avatar.colorIndex = 0;
+        const { boxShadow } = getComputedStyle(avatar, '::before');
+        expect(['rgb(255, 0, 0)', 'red'].some((v) => boxShadow.indexOf(v) > -1)).to.be.true;
+      });
+
+      it('should set attribute based on color index', () => {
+        avatar.colorIndex = 0;
+        expect(avatar.hasAttribute('has-color-index')).to.be.true;
+        avatar.colorIndex = null;
+        expect(avatar.hasAttribute('has-color-index')).to.be.false;
+      });
     });
 
-    it('should set attribute based on color index', () => {
-      window.ShadyCSS.styleSubtree(document.documentElement, {'--vaadin-user-color-0': 'red'});
-      avatar.colorIndex = 0;
-      expect(avatar.hasAttribute('has-color-index')).to.be.true;
-      avatar.colorIndex = null;
-      expect(avatar.hasAttribute('has-color-index')).to.be.false;
-    });
+    describe('incorrect index', () => {
+      beforeEach(() => {
+        sinon.stub(console, 'warn');
+      });
 
-    it('should not set attribute for invalid index', () => {
-      avatar.colorIndex = 99;
-      expect(avatar.hasAttribute('has-color-index')).to.be.false;
-    });
+      afterEach(() => {
+        console.warn.restore();
+      });
 
-    it('should warn about invalid css property used', () => {
-      const _warn = console.warn;
-      const spy = console.warn = sinon.spy();
+      it('should not set attribute for invalid index', () => {
+        avatar.colorIndex = 99;
+        expect(avatar.hasAttribute('has-color-index')).to.be.false;
+      });
 
-      avatar.colorIndex = 99;
-      console.warn = _warn;
-
-      expect(spy.called).to.be.true;
+      it('should warn about invalid css property used', () => {
+        avatar.colorIndex = 99;
+        expect(console.warn.called).to.be.true;
+      });
     });
   });
 
@@ -299,5 +291,3 @@ describe('vaadin-avatar', function() {
     });
   });
 });
-</script>
-</body>
