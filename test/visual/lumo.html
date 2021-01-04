@@ -1,56 +1,40 @@
 <!DOCTYPE html>
 
 <head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-  <script src="../../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module" src="../../theme/lumo/vaadin-avatar.js"></script>
+  <meta charset="UTF-8" />
+  <title>Avatar Lumo variants</title>
   <script type="module">
-import '../../theme/lumo/vaadin-avatar.js';
-const variant = window.location.search.replace(/.*variant=(\w+).*/, '$1') || 'light';
-document.documentElement.setAttribute('theme', variant);
-</script>
-  <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-    <style include="lumo-color">
-    </style>
-  </custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+    import '@polymer/polymer/lib/elements/custom-style.js';
+    const variant = window.location.search.replace(/.*variant=(\w+).*/, '$1') || 'light';
+    document.documentElement.setAttribute('theme', variant);
+  </script>
 </head>
 
 <body>
+  <custom-style>
+    <style include="lumo-color"></style>
+  </custom-style>
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<div id="default-tests" style="width: 600px;">
+  <div id="tests" style="width: 600px">
     <vaadin-avatar theme="xlarge"></vaadin-avatar>
     <vaadin-avatar theme="large"></vaadin-avatar>
     <vaadin-avatar></vaadin-avatar>
     <vaadin-avatar theme="small"></vaadin-avatar>
     <vaadin-avatar theme="xsmall"></vaadin-avatar>
-    <br>
+    <br />
     <vaadin-avatar name="Foo Bar" theme="xlarge"></vaadin-avatar>
     <vaadin-avatar name="Foo Bar" theme="large"></vaadin-avatar>
     <vaadin-avatar name="Foo Bar"></vaadin-avatar>
     <vaadin-avatar name="Foo Bar" theme="small"></vaadin-avatar>
     <vaadin-avatar name="Foo Bar" theme="xsmall"></vaadin-avatar>
-    <br>
-  </div>`;
+    <br />
+  </div>
 
-document.body.appendChild($_documentContainer.content);
-</script>
+  <script type="module">
+    import '../../theme/lumo/vaadin-avatar.js';
 
+    window.requestAnimationFrame(() => {
+      document.getElementById('tests').dataset.ready = true;
+    });
+  </script>
 </body>

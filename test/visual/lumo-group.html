@@ -1,63 +1,41 @@
 <!DOCTYPE html>
 
 <head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-  <script src="../../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-  <script type="module" src="../../theme/lumo/vaadin-avatar-group.js"></script>
+  <meta charset="UTF-8" />
+  <title>Avatar group Lumo variants</title>
   <script type="module">
-import '../../theme/lumo/vaadin-avatar-group.js';
-const variant = window.location.search.replace(/.*variant=(\w+).*/, '$1') || 'light';
-document.documentElement.setAttribute('theme', variant);
-</script>
-  <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-    <style include="lumo-color">
-    </style>
-  </custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+    import '@polymer/polymer/lib/elements/custom-style.js';
+    const variant = window.location.search.replace(/.*variant=(\w+).*/, '$1') || 'light';
+    document.documentElement.setAttribute('theme', variant);
+  </script>
 </head>
 
 <body>
+  <custom-style>
+    <style include="lumo-color"></style>
+  </custom-style>
 
-  <script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<div id="group-tests" style="width: 300px;">
+  <div id="tests" style="width: 300px">
     <vaadin-avatar-group theme="xlarge"></vaadin-avatar-group>
-    <br>
+    <br />
     <vaadin-avatar-group theme="large"></vaadin-avatar-group>
-    <br>
+    <br />
     <vaadin-avatar-group></vaadin-avatar-group>
-    <br>
+    <br />
     <vaadin-avatar-group theme="small"></vaadin-avatar-group>
-    <br>
+    <br />
     <vaadin-avatar-group theme="xsmall"></vaadin-avatar-group>
-  </div>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+  </div>
 
   <script type="module">
-import '../../theme/lumo/vaadin-avatar-group.js';
-Array.from(document.querySelectorAll('vaadin-avatar-group')).forEach(group => {
-  group.items = [
-    {},
-    {name: 'Foo Bar'},
-    {name: 'Foo Bar', abbr: 'YY'}
-  ];
-});
-</script>
+    import '../../theme/lumo/vaadin-avatar-group.js';
+
+    document.querySelectorAll('vaadin-avatar-group').forEach((group) => {
+      group.items = [{}, { name: 'Foo Bar' }, { name: 'Foo Bar', abbr: 'YY' }];
+    });
+
+    window.requestAnimationFrame(() => {
+      document.getElementById('tests').dataset.ready = true;
+    });
+  </script>
 </body>
