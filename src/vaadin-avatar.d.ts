@@ -2,6 +2,8 @@ import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mix
 
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
+import { AvatarI18n } from './interfaces';
+
 /**
  * `<vaadin-avatar>` is a Web Component providing avatar displaying functionality.
  *
@@ -70,5 +72,3 @@ declare global {
 }
 
 export { AvatarElement };
-
-import { AvatarI18n } from '../@types/interfaces';

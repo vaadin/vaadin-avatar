@@ -2,6 +2,8 @@ import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mix
 
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
+import { AvatarGroupItem, AvatarGroupI18n } from './interfaces';
+
 /**
  * `<vaadin-avatar-group>` is a Web Component providing avatar group displaying functionality.
  *
@@ -103,7 +105,3 @@ declare global {
 }
 
 export { AvatarGroupElement };
-
-import { AvatarGroupItem } from '../@types/interfaces';
-
-import { AvatarGroupI18n } from '../@types/interfaces';
