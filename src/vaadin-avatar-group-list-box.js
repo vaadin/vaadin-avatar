@@ -1,4 +1,5 @@
 import { ListBoxElement } from '@vaadin/vaadin-list-box/src/vaadin-list-box.js';
+
 /**
  * The vaadin-avatar-group-list-box element.
  *

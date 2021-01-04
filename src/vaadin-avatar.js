@@ -61,71 +61,85 @@ window.addEventListener(
 class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: inline-block;
-        flex: none;
-        border-radius: 50%;
-        overflow: hidden;
-        height: var(--vaadin-avatar-size);
-        width: var(--vaadin-avatar-size);
-        border: var(--vaadin-avatar-outline-width) solid transparent;
-        margin: calc(var(--vaadin-avatar-outline-width) * -1);
-        background-clip: content-box;
-        --vaadin-avatar-outline-width: 2px;
-        --vaadin-avatar-size: 64px;
-      }
+      <style>
+        :host {
+          display: inline-block;
+          flex: none;
+          border-radius: 50%;
+          overflow: hidden;
+          height: var(--vaadin-avatar-size);
+          width: var(--vaadin-avatar-size);
+          border: var(--vaadin-avatar-outline-width) solid transparent;
+          margin: calc(var(--vaadin-avatar-outline-width) * -1);
+          background-clip: content-box;
+          --vaadin-avatar-outline-width: 2px;
+          --vaadin-avatar-size: 64px;
+        }
 
-      img {
-        height: 100%;
-        width: 100%;
-      }
+        img {
+          height: 100%;
+          width: 100%;
+        }
 
-      [part="icon"] {
-        font-size: 5.6em;
-      }
+        [part='icon'] {
+          font-size: 5.6em;
+        }
 
-      [part="abbr"] {
-        font-size: 2.2em;
-      }
+        [part='abbr'] {
+          font-size: 2.2em;
+        }
 
-      [part="icon"] > text {
-        font-family: 'vaadin-avatar-icons';
-      }
+        [part='icon'] > text {
+          font-family: 'vaadin-avatar-icons';
+        }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+        :host([hidden]) {
+          display: none !important;
+        }
 
-      svg[hidden] {
-        display: none !important;
-      }
+        svg[hidden] {
+          display: none !important;
+        }
 
-      :host([has-color-index]) {
-        position: relative;
-        background-color: var(--vaadin-avatar-user-color);
-      }
+        :host([has-color-index]) {
+          position: relative;
+          background-color: var(--vaadin-avatar-user-color);
+        }
 
-      :host([has-color-index])::before {
-        position: absolute;
-        z-index: 1;
-        content: '';
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border-radius: 50%;
-        box-shadow: inset 0 0 0 2px var(--vaadin-avatar-user-color);
-      }
-    </style>
-    <img hidden\$="[[!__imgVisible]]" src\$="[[img]]" aria-hidden="true">
-    <svg part="icon" hidden\$="[[!__iconVisible]]" id="avatar-icon" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <text dy=".35em" text-anchor="middle"></text>
-    </svg>
-    <svg part="abbr" hidden\$="[[!__abbrVisible]]" id="avatar-abbr" viewBox="-50 -50 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <text dy=".35em" text-anchor="middle">[[abbr]]</text>
-    </svg>
-`;
+        :host([has-color-index])::before {
+          position: absolute;
+          z-index: 1;
+          content: '';
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          border-radius: 50%;
+          box-shadow: inset 0 0 0 2px var(--vaadin-avatar-user-color);
+        }
+      </style>
+      <img hidden$="[[!__imgVisible]]" src$="[[img]]" aria-hidden="true" />
+      <svg
+        part="icon"
+        hidden$="[[!__iconVisible]]"
+        id="avatar-icon"
+        viewBox="-50 -50 100 100"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+      >
+        <text dy=".35em" text-anchor="middle"></text>
+      </svg>
+      <svg
+        part="abbr"
+        hidden$="[[!__abbrVisible]]"
+        id="avatar-abbr"
+        viewBox="-50 -50 100 100"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+      >
+        <text dy=".35em" text-anchor="middle">[[abbr]]</text>
+      </svg>
+    `;
   }
 
   static get is() {
@@ -206,10 +220,7 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   }
 
   static get observers() {
-    return [
-      '__imgOrAbbrOrNameChanged(img, abbr, name)',
-      '__i18nChanged(i18n.*)'
-    ];
+    return ['__imgOrAbbrOrNameChanged(img, abbr, name)', '__i18nChanged(i18n.*)'];
   }
 
   /** @protected */
@@ -260,9 +271,9 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
 
       // check if custom CSS property is defined
       const isValid = Boolean(
-        isShady ?
-          window.ShadyCSS.getComputedStyleValue(document.documentElement, prop) :
-          getComputedStyle(document.documentElement).getPropertyValue(prop)
+        isShady
+          ? window.ShadyCSS.getComputedStyleValue(document.documentElement, prop)
+          : getComputedStyle(document.documentElement).getPropertyValue(prop)
       );
 
       if (isValid) {
@@ -294,7 +305,10 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
     }
 
     if (name) {
-      this.abbr = this.__generatedAbbr = name.split(' ').map(word => word.charAt(0)).join('');
+      this.abbr = this.__generatedAbbr = name
+        .split(' ')
+        .map((word) => word.charAt(0))
+        .join('');
     } else {
       this.abbr = undefined;
     }

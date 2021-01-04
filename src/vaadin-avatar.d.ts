@@ -1,6 +1,6 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-avatar>` is a Web Component providing avatar displaying functionality.
@@ -26,32 +26,28 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See [Styling Components](https://vaadin.com/docs/v14/themes/styling-components.html) documentation.
  */
-declare class AvatarElement extends
-  ElementMixin(
-  ThemableMixin(
-  HTMLElement)) {
-
+declare class AvatarElement extends ElementMixin(ThemableMixin(HTMLElement)) {
   /**
    * The path to the image
    */
-  img: string|null|undefined;
+  img: string | null | undefined;
 
   /**
    * A shortened form of name that is displayed
    * in the avatar when `img` is not provided.
    */
-  abbr: string|null|undefined;
+  abbr: string | null | undefined;
 
   /**
    * Full name of the user
    * used for the title of the avatar.
    */
-  name: string|null|undefined;
+  name: string | null | undefined;
 
   /**
    * Color index used for avatar background.
    */
-  colorIndex: number|null|undefined;
+  colorIndex: number | null | undefined;
 
   /**
    * The object used to localize this component.
@@ -68,12 +64,11 @@ declare class AvatarElement extends
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-avatar": AvatarElement;
+    'vaadin-avatar': AvatarElement;
   }
 }
 
-export {AvatarElement};
+export { AvatarElement };
 
-import {AvatarI18n} from '../@types/interfaces';
+import { AvatarI18n } from '../@types/interfaces';

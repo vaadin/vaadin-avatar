@@ -53,70 +53,102 @@ const MINIMUM_DISPLAYED_AVATARS = 2;
  * @mixes ElementMixin
  * @mixes ThemableMixin
  */
-class AvatarGroupElement extends
-  ElementMixin(
-    ThemableMixin(
-      mixinBehaviors([IronResizableBehavior], PolymerElement))) {
+class AvatarGroupElement extends ElementMixin(ThemableMixin(mixinBehaviors([IronResizableBehavior], PolymerElement))) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: block;
-        width: 100%; /* prevent collapsing inside non-stretching column flex */
-        --vaadin-avatar-group-overlap: 8px;
-        --vaadin-avatar-group-overlap-border: 2px;
-        --vaadin-avatar-size: 64px;
-      }
+      <style>
+        :host {
+          display: block;
+          width: 100%; /* prevent collapsing inside non-stretching column flex */
+          --vaadin-avatar-group-overlap: 8px;
+          --vaadin-avatar-group-overlap-border: 2px;
+          --vaadin-avatar-size: 64px;
+        }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+        :host([hidden]) {
+          display: none !important;
+        }
 
-      [part="container"] {
-        display: flex;
-        position: relative;
-        width: 100%;
-        flex-wrap: nowrap;
-      }
+        [part='container'] {
+          display: flex;
+          position: relative;
+          width: 100%;
+          flex-wrap: nowrap;
+        }
 
-      [part="avatar"]:not(:first-child) {
-        -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzAwIDMwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwMCAwSDBWMzAwSDMwMFYwWk0xNTAgMjAwQzE3Ny42MTQgMjAwIDIwMCAxNzcuNjE0IDIwMCAxNTBDMjAwIDEyMi4zODYgMTc3LjYxNCAxMDAgMTUwIDEwMEMxMjIuMzg2IDEwMCAxMDAgMTIyLjM4NiAxMDAgMTUwQzEwMCAxNzcuNjE0IDEyMi4zODYgMjAwIDE1MCAyMDBaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==);
-        mask-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzAwIDMwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwMCAwSDBWMzAwSDMwMFYwWk0xNTAgMjAwQzE3Ny42MTQgMjAwIDIwMCAxNzcuNjE0IDIwMCAxNTBDMjAwIDEyMi4zODYgMTc3LjYxNCAxMDAgMTUwIDEwMEMxMjIuMzg2IDEwMCAxMDAgMTIyLjM4NiAxMDAgMTUwQzEwMCAxNzcuNjE0IDEyMi4zODYgMjAwIDE1MCAyMDBaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==);
-        -webkit-mask-size: calc(300% + var(--vaadin-avatar-group-overlap-border) * 6 - var(--vaadin-avatar-outline-width) * 6);
-        mask-size: calc(300% + var(--vaadin-avatar-group-overlap-border) * 6 - var(--vaadin-avatar-outline-width) * 6);
-      }
+        [part='avatar']:not(:first-child) {
+          -webkit-mask-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzAwIDMwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwMCAwSDBWMzAwSDMwMFYwWk0xNTAgMjAwQzE3Ny42MTQgMjAwIDIwMCAxNzcuNjE0IDIwMCAxNTBDMjAwIDEyMi4zODYgMTc3LjYxNCAxMDAgMTUwIDEwMEMxMjIuMzg2IDEwMCAxMDAgMTIyLjM4NiAxMDAgMTUwQzEwMCAxNzcuNjE0IDEyMi4zODYgMjAwIDE1MCAyMDBaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==);
+          mask-image: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzAwIDMwMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwMCAwSDBWMzAwSDMwMFYwWk0xNTAgMjAwQzE3Ny42MTQgMjAwIDIwMCAxNzcuNjE0IDIwMCAxNTBDMjAwIDEyMi4zODYgMTc3LjYxNCAxMDAgMTUwIDEwMEMxMjIuMzg2IDEwMCAxMDAgMTIyLjM4NiAxMDAgMTUwQzEwMCAxNzcuNjE0IDEyMi4zODYgMjAwIDE1MCAyMDBaIiBmaWxsPSJibGFjayIvPjwvc3ZnPg==);
+          -webkit-mask-size: calc(
+            300% + var(--vaadin-avatar-group-overlap-border) * 6 - var(--vaadin-avatar-outline-width) * 6
+          );
+          mask-size: calc(
+            300% + var(--vaadin-avatar-group-overlap-border) * 6 - var(--vaadin-avatar-outline-width) * 6
+          );
+        }
 
-      [part="avatar"]:not([dir="rtl"]):not(:first-child) {
-        margin-left: calc(var(--vaadin-avatar-group-overlap) * -1 - var(--vaadin-avatar-outline-width));
-        -webkit-mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
-        mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
-      }
+        [part='avatar']:not([dir='rtl']):not(:first-child) {
+          margin-left: calc(var(--vaadin-avatar-group-overlap) * -1 - var(--vaadin-avatar-outline-width));
+          -webkit-mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
+          mask-position: calc(50% - var(--vaadin-avatar-size) + var(--vaadin-avatar-group-overlap));
+        }
 
-      [part="avatar"][dir="rtl"]:not(:first-child) {
-        margin-right: calc(var(--vaadin-avatar-group-overlap) * -1);
-        -webkit-mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width));
-        mask-position: calc(50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width));
-      }
-    </style>
-    <div id="container" part="container">
-      <template id="items" is="dom-repeat" items="[[__computeItems(items.*, __itemsInView, maxItemsVisible)]]">
-        <vaadin-avatar name="[[item.name]]" abbr="[[item.abbr]]" img="[[item.img]]" part="avatar" theme\$="[[theme]]" i18n="[[i18n]]" color-index="[[item.colorIndex]]"></vaadin-avatar>
-      </template>
-      <vaadin-avatar id="overflow" part="avatar" hidden\$="[[__computeMoreHidden(items.length, __itemsInView, __maxReached)]]" abbr="[[__computeMore(items.length, __itemsInView, maxItemsVisible)]]" theme\$="[[theme]]" on-click="_onOverflowClick" on-keydown="_onOverflowKeyDown" aria-haspopup="listbox"></vaadin-avatar>
-    </div>
-    <vaadin-avatar-group-overlay id="overlay" opened="{{_opened}}" on-vaadin-overlay-close="_onVaadinOverlayClose">
-      <template>
-        <vaadin-avatar-group-list-box on-keydown="_onListKeyDown">
-          <template is="dom-repeat" items="[[__computeExtraItems(items.*, __itemsInView, maxItemsVisible)]]">
-            <vaadin-item theme="avatar-group-item" role="option">
-              <vaadin-avatar name="[[item.name]]" abbr="[[item.abbr]]" img="[[item.img]]" i18n="[[i18n]]" part="avatar" theme\$="[[theme]]" color-index="[[item.colorIndex]]" tabindex="-1" aria-hidden="true"></vaadin-avatar>
-              [[item.name]]
-            </vaadin-item>
-          </template>
-        </vaadin-avatar-group-list-box>
-      </template>
-    </vaadin-avatar-group-overlay>
-`;
+        [part='avatar'][dir='rtl']:not(:first-child) {
+          margin-right: calc(var(--vaadin-avatar-group-overlap) * -1);
+          -webkit-mask-position: calc(
+            50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width)
+          );
+          mask-position: calc(
+            50% + var(--vaadin-avatar-size) - var(--vaadin-avatar-group-overlap) + var(--vaadin-avatar-outline-width)
+          );
+        }
+      </style>
+      <div id="container" part="container">
+        <template id="items" is="dom-repeat" items="[[__computeItems(items.*, __itemsInView, maxItemsVisible)]]">
+          <vaadin-avatar
+            name="[[item.name]]"
+            abbr="[[item.abbr]]"
+            img="[[item.img]]"
+            part="avatar"
+            theme$="[[theme]]"
+            i18n="[[i18n]]"
+            color-index="[[item.colorIndex]]"
+          ></vaadin-avatar>
+        </template>
+        <vaadin-avatar
+          id="overflow"
+          part="avatar"
+          hidden$="[[__computeMoreHidden(items.length, __itemsInView, __maxReached)]]"
+          abbr="[[__computeMore(items.length, __itemsInView, maxItemsVisible)]]"
+          theme$="[[theme]]"
+          on-click="_onOverflowClick"
+          on-keydown="_onOverflowKeyDown"
+          aria-haspopup="listbox"
+        ></vaadin-avatar>
+      </div>
+      <vaadin-avatar-group-overlay id="overlay" opened="{{_opened}}" on-vaadin-overlay-close="_onVaadinOverlayClose">
+        <template>
+          <vaadin-avatar-group-list-box on-keydown="_onListKeyDown">
+            <template is="dom-repeat" items="[[__computeExtraItems(items.*, __itemsInView, maxItemsVisible)]]">
+              <vaadin-item theme="avatar-group-item" role="option">
+                <vaadin-avatar
+                  name="[[item.name]]"
+                  abbr="[[item.abbr]]"
+                  img="[[item.img]]"
+                  i18n="[[i18n]]"
+                  part="avatar"
+                  theme$="[[theme]]"
+                  color-index="[[item.colorIndex]]"
+                  tabindex="-1"
+                  aria-hidden="true"
+                ></vaadin-avatar>
+                [[item.name]]
+              </vaadin-item>
+            </template>
+          </vaadin-avatar-group-list-box>
+        </template>
+      </vaadin-avatar-group-overlay>
+    `;
   }
 
   static get is() {
@@ -325,14 +357,10 @@ class AvatarGroupElement extends
 
   /** @private */
   _onResize() {
-    this.__debounceResize = Debouncer.debounce(
-      this.__debounceResize,
-      timeOut.after(0),
-      () => {
-        this.__setItemsInView();
-        this.__setPosition();
-      }
-    );
+    this.__debounceResize = Debouncer.debounce(this.__debounceResize, timeOut.after(0), () => {
+      this.__setItemsInView();
+      this.__setPosition();
+    });
   }
 
   /** @private */
@@ -429,7 +457,7 @@ class AvatarGroupElement extends
 
   /** @private */
   __announceItemsChange(items, mutation) {
-    const {addedCount, index, removed} = mutation;
+    const { addedCount, index, removed } = mutation;
     let addedMsg = [];
     let removedMsg = [];
     if (addedCount) {
@@ -450,7 +478,7 @@ class AvatarGroupElement extends
 
   /** @private */
   __i18nItemsChanged(i18n, items) {
-    const {base} = i18n;
+    const { base } = i18n;
     if (base && base.activeUsers) {
       const field = items === 1 ? 'one' : 'many';
       if (base.activeUsers[field]) {
@@ -470,7 +498,7 @@ class AvatarGroupElement extends
       this._openedWithFocusRing = this.$.overflow.hasAttribute('focus-ring');
 
       const avatars = this._menuElement.querySelectorAll('vaadin-avatar');
-      avatars.forEach(avatar => avatar.removeAttribute('title'));
+      avatars.forEach((avatar) => avatar.removeAttribute('title'));
 
       this._menuElement.focus();
       this.__setPosition();
@@ -525,11 +553,12 @@ class AvatarGroupElement extends
     const avatarWidth = avatars[0].clientWidth;
 
     // take negative margin into account
-    const {marginLeft, marginRight} = getComputedStyle(avatars[1]);
+    const { marginLeft, marginRight } = getComputedStyle(avatars[1]);
 
-    const offset = this.getAttribute('dir') == 'rtl' ?
-      parseInt(marginRight, 0) - parseInt(marginLeft, 0) :
-      parseInt(marginLeft, 0) - parseInt(marginRight, 0);
+    const offset =
+      this.getAttribute('dir') == 'rtl'
+        ? parseInt(marginRight, 0) - parseInt(marginLeft, 0)
+        : parseInt(marginLeft, 0) - parseInt(marginRight, 0);
 
     return Math.floor((this.$.container.offsetWidth - avatarWidth) / (avatarWidth + offset));
   }
@@ -554,7 +583,7 @@ class AvatarGroupElement extends
     if (bottomAlign) {
       this._overlayElement.setAttribute('bottom-aligned', '');
       this._overlayElement.style.removeProperty('top');
-      this._overlayElement.style.bottom = (viewportHeight - btnRect.top) + 'px';
+      this._overlayElement.style.bottom = viewportHeight - btnRect.top + 'px';
     } else {
       this._overlayElement.removeAttribute('bottom-aligned');
       this._overlayElement.style.removeProperty('bottom');

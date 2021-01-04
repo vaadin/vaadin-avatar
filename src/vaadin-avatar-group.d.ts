@@ -1,6 +1,6 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-avatar-group>` is a Web Component providing avatar group displaying functionality.
@@ -31,10 +31,7 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See [Styling Components](https://vaadin.com/docs/v14/themes/styling-components.html) documentation.
  */
-declare class AvatarGroupElement extends
-  ElementMixin(
-  ThemableMixin(
-  HTMLElement)) {
+declare class AvatarGroupElement extends ElementMixin(ThemableMixin(HTMLElement)) {
   readonly _avatars: HTMLElement[];
 
   /**
@@ -60,14 +57,14 @@ declare class AvatarGroupElement extends
    * ];
    * ```
    */
-  items: AvatarGroupItem[]|undefined;
+  items: AvatarGroupItem[] | undefined;
 
   /**
    * The maximum number of avatars to display. By default, all the avatars are displayed.
    * When _maxItemsVisible_ is set, the overflowing avatars are grouped into one avatar with
    * a dropdown. Setting 0 or 1 has no effect so there are always at least two avatars visible.
    */
-  maxItemsVisible: number|null|undefined;
+  maxItemsVisible: number | null | undefined;
 
   /**
    * The object used to localize this component.
@@ -100,14 +97,13 @@ declare class AvatarGroupElement extends
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-avatar-group": AvatarGroupElement;
+    'vaadin-avatar-group': AvatarGroupElement;
   }
 }
 
-export {AvatarGroupElement};
+export { AvatarGroupElement };
 
-import {AvatarGroupItem} from '../@types/interfaces';
+import { AvatarGroupItem } from '../@types/interfaces';
 
-import {AvatarGroupI18n} from '../@types/interfaces';
+import { AvatarGroupI18n } from '../@types/interfaces';
