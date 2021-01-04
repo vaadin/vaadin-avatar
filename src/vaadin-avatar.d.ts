@@ -1,10 +1,6 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
 import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 
 /**
  * `<vaadin-avatar>` is a Web Component providing avatar displaying functionality.
@@ -33,7 +29,7 @@ import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 declare class AvatarElement extends
   ElementMixin(
   ThemableMixin(
-  PolymerElement)) {
+  HTMLElement)) {
 
   /**
    * The path to the image
@@ -69,7 +65,6 @@ declare class AvatarElement extends
    *           }
    */
   i18n: AvatarI18n;
-  ready(): void;
 }
 
 declare global {

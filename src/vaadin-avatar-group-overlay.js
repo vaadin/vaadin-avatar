@@ -28,7 +28,7 @@ document.head.appendChild($_documentContainer.content);
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * @extends PolymerElement
+ * @extends HTMLElement
  */
 class AvatarGroupOverlayElement extends OverlayElement {
   static get is() {

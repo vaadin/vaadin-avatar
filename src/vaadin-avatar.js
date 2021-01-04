@@ -56,7 +56,7 @@ window.addEventListener(
  *
  * See [Styling Components](https://vaadin.com/docs/v14/themes/styling-components.html) documentation.
  *
- * @extends PolymerElement
+ * @extends HTMLElement
  * @mixes ElementMixin
  * @mixes ThemableMixin
  */

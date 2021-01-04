@@ -1,26 +1,6 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-
-import {timeOut} from '@polymer/polymer/lib/utils/async.js';
-
-import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
-
-import {IronA11yAnnouncer} from '@polymer/iron-a11y-announcer/iron-a11y-announcer.js';
-
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {IronA11yAnnouncer as IronA11yAnnouncer$0} from '@polymer/iron-a11y-announcer/iron-a11y-announcer.js';
-
-import {IronResizableBehavior} from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
-
 import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
-
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-
-import {afterNextRender} from '@polymer/polymer/lib/utils/render-status.js';
-
-import {calculateSplices} from '@polymer/polymer/lib/utils/array-splice.js';
-
-import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 
 /**
  * `<vaadin-avatar-group>` is a Web Component providing avatar group displaying functionality.
@@ -54,7 +34,7 @@ import {mixinBehaviors} from '@polymer/polymer/lib/legacy/class.js';
 declare class AvatarGroupElement extends
   ElementMixin(
   ThemableMixin(
-  PolymerElement)) {
+  HTMLElement)) {
   readonly _avatars: HTMLElement[];
 
   /**
@@ -117,8 +97,6 @@ declare class AvatarGroupElement extends
    * ```
    */
   i18n: AvatarGroupI18n;
-  ready(): void;
-  attributeChangedCallback(name: string, oldValue: string|null, newValue: string|null): void;
 }
 
 declare global {
