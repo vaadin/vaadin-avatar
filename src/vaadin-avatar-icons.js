@@ -1,7 +1,6 @@
-import '@polymer/polymer/lib/elements/custom-style.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<custom-style>
+$_documentContainer.innerHTML = `
   <style>
     @font-face {
       font-family: 'vaadin-avatar-icons';
@@ -10,14 +9,6 @@ $_documentContainer.innerHTML = `<custom-style>
       font-style: normal;
     }
   </style>
-</custom-style>`;
+`;
 
 document.head.appendChild($_documentContainer.content);
-
-/* NOTE: Auto generated with 'gulp icons', do not edit */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-;
