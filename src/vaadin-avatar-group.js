@@ -3,23 +3,20 @@
 Copyright (c) 2020 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { calculateSplices } from '@polymer/polymer/lib/utils/array-splice.js';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { timeOut } from '@polymer/polymer/lib/utils/async.js';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { IronA11yAnnouncer } from '@polymer/iron-a11y-announcer/iron-a11y-announcer.js';
 import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
-import { IronA11yAnnouncer as IronA11yAnnouncer$0 } from '@polymer/iron-a11y-announcer/iron-a11y-announcer.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 import '@vaadin/vaadin-item/src/vaadin-item.js';
 import './vaadin-avatar-group-list-box.js';
 import './vaadin-avatar-group-overlay.js';
 import './vaadin-avatar.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
-import { calculateSplices } from '@polymer/polymer/lib/utils/array-splice.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
 const MINIMUM_DISPLAYED_AVATARS = 2;
 
@@ -247,7 +244,7 @@ class AvatarGroupElement extends
   ready() {
     super.ready();
 
-    IronA11yAnnouncer$0.requestAvailability();
+    IronA11yAnnouncer.requestAvailability();
 
     this.__boundSetPosition = this.__setPosition.bind(this);
 

@@ -3,12 +3,10 @@
 Copyright (c) 2020 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 */
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 import './vaadin-avatar-icons.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
 // We consider the keyboard to be active if the window has received a keydown
 // event since the last mousedown event.
