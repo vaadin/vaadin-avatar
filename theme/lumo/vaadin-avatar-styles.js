@@ -9,16 +9,15 @@ registerStyles(
   'vaadin-avatar',
   css`
     :host {
-      width: var(--lumo-size-m);
-      height: var(--lumo-size-m);
-      color: var(--lumo-secondary-text-color);
+      --vaadin-avatar-size: var(--lumo-size-m);
       background-color: var(--lumo-contrast-10pct);
       border-radius: 50%;
-      outline: none;
+      color: var(--lumo-secondary-text-color);
       cursor: default;
+      outline: none;
       user-select: none;
-      -webkit-tap-highlight-color: transparent;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
       -moz-osx-font-smoothing: grayscale;
     }
 
