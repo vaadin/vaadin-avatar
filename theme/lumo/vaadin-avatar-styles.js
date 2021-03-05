@@ -10,14 +10,14 @@ registerStyles(
   css`
     :host {
       --vaadin-avatar-size: var(--lumo-size-m);
+      color: var(--lumo-secondary-text-color);
       background-color: var(--lumo-contrast-10pct);
       border-radius: 50%;
-      color: var(--lumo-secondary-text-color);
-      cursor: default;
       outline: none;
+      cursor: default;
       user-select: none;
-      -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
+      -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
