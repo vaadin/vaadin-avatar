@@ -278,6 +278,12 @@ describe('vaadin-avatar', () => {
       expect(avatar.getAttribute('role')).to.equal('img');
     });
 
+    it('should set aria-label when title is set', () => {
+      avatar.name = 'Foo Bar';
+      expect(avatar.getAttribute('title')).to.equal('Foo Bar');
+      expect(avatar.getAttribute('aria-label')).to.equal('Foo Bar');
+    });
+
     it('should set role="button" when clickable property is set', () => {
       avatar.clickable = true;
       expect(avatar.getAttribute('role')).to.equal('button');

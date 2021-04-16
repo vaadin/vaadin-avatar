@@ -341,8 +341,10 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   __setTitle(title) {
     if (title) {
       this.setAttribute('title', title);
+      this.setAttribute('aria-label', title);
     } else {
       this.setAttribute('title', this.i18n.anonymous);
+      this.setAttribute('aria-label', this.i18n.anonymous);
     }
   }
 
