@@ -113,6 +113,7 @@ class AvatarGroupElement extends ElementMixin(ThemableMixin(mixinBehaviors([Iron
             theme$="[[theme]]"
             i18n="[[i18n]]"
             color-index="[[item.colorIndex]]"
+            clickable$="[[item.clickable]]"
           ></vaadin-avatar>
         </template>
         <vaadin-avatar
