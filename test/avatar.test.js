@@ -274,8 +274,8 @@ describe('vaadin-avatar', () => {
   });
 
   describe('a11y', () => {
-    it('should set role="button" on the avatar', () => {
-      expect(avatar.getAttribute('role')).to.equal('button');
+    it('should set role="img" on the avatar', () => {
+      expect(avatar.getAttribute('role')).to.equal('img');
     });
 
     it('should set aria-hidden="true" on the img element', () => {

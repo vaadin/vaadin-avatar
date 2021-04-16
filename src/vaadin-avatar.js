@@ -234,7 +234,7 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       this.__setTitle(this.name);
     }
 
-    this.setAttribute('role', 'button');
+    this.setAttribute('role', 'img');
 
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
