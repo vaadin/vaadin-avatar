@@ -29,6 +29,10 @@ registerStyles(
       border-color: var(--lumo-primary-color-50pct);
     }
 
+    :host([clickable]) {
+      cursor: var(--lumo-clickable-cursor);
+    }
+
     [part='icon'],
     [part='abbr'] {
       fill: currentColor;
