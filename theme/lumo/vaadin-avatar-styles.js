@@ -31,6 +31,27 @@ registerStyles(
 
     :host([clickable]) {
       cursor: var(--lumo-clickable-cursor);
+      position: relative;
+    }
+
+    :host([clickable])::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      border-radius: inherit;
+      transition: background-color 0.2s;
+    }
+
+    :host([clickable]:hover)::after {
+      background-color: var(--lumo-shade-10pct);
+    }
+
+    :host([has-color-index][clickable]:hover)::after {
+      background-color: var(--lumo-shade-20pct);
     }
 
     [part='icon'],
