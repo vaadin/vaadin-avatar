@@ -43,15 +43,26 @@ registerStyles(
       bottom: 0;
       right: 0;
       border-radius: inherit;
-      transition: background-color 0.2s;
+      background-color: var(--lumo-shade);
+      transition: opacity 0.2s;
+      opacity: 0;
     }
 
     :host([clickable]:hover)::after {
-      background-color: var(--lumo-shade-10pct);
+      opacity: 0.1;
+    }
+
+    :host([clickable]:active)::after {
+      opacity: 0.15;
+      transition-duration: 0s;
     }
 
     :host([has-color-index][clickable]:hover)::after {
-      background-color: var(--lumo-shade-20pct);
+      opacity: 0.15;
+    }
+
+    :host([has-color-index][clickable]:active)::after {
+      opacity: 0.25;
     }
 
     [part='icon'],
