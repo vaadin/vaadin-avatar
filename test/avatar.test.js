@@ -278,6 +278,17 @@ describe('vaadin-avatar', () => {
       expect(avatar.getAttribute('role')).to.equal('img');
     });
 
+    it('should set role="button" when clickable property is set', () => {
+      avatar.clickable = true;
+      expect(avatar.getAttribute('role')).to.equal('button');
+    });
+
+    it('should set back role="img" when clickable property is removed', () => {
+      avatar.clickable = true;
+      avatar.clickable = false;
+      expect(avatar.getAttribute('role')).to.equal('img');
+    });
+
     it('should set aria-hidden="true" on the img element', () => {
       expect(imgElement.getAttribute('aria-hidden')).to.equal('true');
     });

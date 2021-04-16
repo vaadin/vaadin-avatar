@@ -117,6 +117,10 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
           border-radius: 50%;
           box-shadow: inset 0 0 0 2px var(--vaadin-avatar-user-color);
         }
+
+        :host([clickable]) {
+          cursor: pointer;
+        }
       </style>
       <img hidden$="[[!__imgVisible]]" src$="[[img]]" aria-hidden="true" />
       <svg
@@ -184,6 +188,17 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       colorIndex: {
         type: Number,
         observer: '__colorIndexChanged'
+      },
+
+      /**
+       * Clickable changes the accessibility property `role` on the element from `img` to `button`.
+       * This indicates to screenreaders that the user can interact with the element.
+       * It also changes the cursor to pointer to indicate that the element can be clicked.
+       * Set `clickable` to true if you attach a click listener to the element, to indicate that the user can interact it
+       */
+      clickable: {
+        type: Boolean,
+        observer: '__clickableChanged'
       },
 
       /**
@@ -328,6 +343,15 @@ class AvatarElement extends ElementMixin(ThemableMixin(PolymerElement)) {
       this.setAttribute('title', title);
     } else {
       this.setAttribute('title', this.i18n.anonymous);
+    }
+  }
+
+  /** @private */
+  __clickableChanged(clickable) {
+    if (clickable) {
+      this.setAttribute('role', 'button');
+    } else {
+      this.setAttribute('role', 'img');
     }
   }
 }
