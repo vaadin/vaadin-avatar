@@ -48,6 +48,13 @@ describe('vaadin-avatar', () => {
         })
         .assertView(`${theme}-overlay-opened-rtl`, locator);
     });
+
+    it(`${theme}-aspect-ratio`, function () {
+      return this.browser
+        .url(`aspect-ratio.html?theme=${theme}`)
+        .waitForVisible(locator, 15000)
+        .assertView(`${theme}-aspect-ratio`, locator);
+    });
   });
 
   ['lumo', 'lumo-dark', 'material'].forEach((theme) => {
